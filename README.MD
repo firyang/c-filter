@@ -1,9 +1,10 @@
 ## c-filter
-用于清理web项目中，未使用的图片。安装到项目中，通过命令行执行命令 cft 来工作。支持请求服务数据进行筛选。
+用于清理web项目中，未使用的图片。安装到项目中，通过命令行执行命令 cft 来工作。支持请求服务数据进行筛选。   
+它不会更改原来的图片资源，只会将使用的图片筛选出来，放在原目录_copy目录中。
 
 ### Install
 ```bash
-$ npm install c-filter --save--dev
+$ npm install c-filter --save-dev
 ```
 
 ### Usage
