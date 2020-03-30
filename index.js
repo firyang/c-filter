@@ -13,7 +13,7 @@ if (fs.existsSync(configPath)) {
 }
 
 const imaPath = argv.path || process.argv[2]
-const httpRequestUrls = argv.httpRequestUrls || []
+const apiList = argv.apiList || []
 const exclude = argv.exclude || []
 
 if (!imaPath || typeof imaPath !== 'string') {
@@ -23,6 +23,6 @@ if (!imaPath || typeof imaPath !== 'string') {
     process.exit()
 }
 
-const filter = new Filter(imaPath, httpRequestUrls, exclude)
+const filter = new Filter(imaPath, apiList, exclude)
 
 filter.run()

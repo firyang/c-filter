@@ -1,6 +1,9 @@
-## c-filter
-用于清理web项目中，未使用的图片。安装到项目中，通过命令行执行命令 cft 来工作。支持请求服务数据进行筛选。   
-它不会更改原来的图片资源，只会将使用的图片筛选出来，放在原目录_copy目录中。
+## c-filter 
+[![npm version](https://badge.fury.io/js/c-filter.svg)](https://badge.fury.io/js/c-filter) 
+
+Used to clean up unused images in web projects. Installed into the project, and execute the command（cft）through the command line to work.  
+Support for requesting service data for filtering.  
+It will not change the original resources, it will only find the used images and move to the '[imagePath]_copy' directory.  
 
 ### Install
 ```bash
@@ -8,31 +11,37 @@ $ npm install c-filter --save-dev
 ```
 
 ### Usage
-执行 cft 命令，传入图片路径（该参数为必需）
+Execute cft command, pass in the picture path (this parameter is required)  
 ```bash
 cft src/images
 cft --path src/images
 ```
-也可以使用配置文件 cft.config.js 传参  
-该配置文件需要放在项目根目录 
+You can also use the configuration file cft.config.js to pass parameters.   
+The file needs to be placed in the project root directory.  
 ```javascript
 module.exports = {
-    path: "src/images"
+  path: "src/images"
 }
 ```
-exclude 忽略不需要检查的文件夹   
-默认忽略 '.vscode', '.git', '.github', 'node_modules', 'build', 'config', 'test', 'types'  
+Ignore folders that do not need to be checked.   
+Default ignore: '.vscode', '.git', '.github', 'node_modules', 'build', 'config', 'test', 'types'  
 ```javascript
 module.exports = {
-    path: "src/images"
-    exclude: ["data"]
+  path: "src/images"
+  exclude: ["data"]
 }
 ```
-httpRequestUrls 如图片是请求服务渲染的，则可配置api 请求服务数据进行筛选   
+If the picture requests to be rendered, you can configure the api to request service data for filtering.  
+The parameters please refer to axios.  
 ```javascript
 module.exports = {
-    path: "src/images",
-    exclude: ["data"],
-    httpRequestUrls: ["https://xxx/resource"]
+  path: "src/images",
+  exclude: ["data"],
+  apiList: [
+    {
+      type: 'get',
+      url:"http://xxx/resource"
+    }
+  ]
 }
 ```

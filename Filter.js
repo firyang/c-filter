@@ -46,14 +46,15 @@ const createDir = (dir, prev) => {
 
 /**
  * 从服务器获取图片资源信息
- * @param {Array} urls api地址列表
+ * @param {Array} apiList api地址列表
  */
-const getResources = async (urls) => {
-    const promises = urls.map(url => {
-        return axios.request({ url })
+const getResources = async (apiList) => {
+    const promises = apiList.map(options => {
+        return axios.request(options)
     })
     const res = await Promise.all(promises)
     const content = res.map(data => JSON.stringify(data)).join(';')
+    console.log(content)
     return content
 }
 
@@ -67,14 +68,14 @@ const match = (content, reg) => {
     return content.match(reg)
 }
 
-const Filter = function (imgPath, httpRequestUrls, exclude) {
+const Filter = function (imgPath, apiList, exclude) {
     const { imgPath: p, srcDirName } = getProps(imgPath)
     this.imgPath = p
     this.srcDirName = srcDirName
     this.desDirName = this.srcDirName + '_copy'
     this.src = path.resolve(imgPath)
     this.des = this.src.replace(this.srcDirName, this.desDirName)
-    this.httpRequestUrls = httpRequestUrls
+    this.apiList = apiList
     this.root = process.cwd()
     this.imgReg = new RegExp(`${this.srcDirName}/\\S+?.(?:gif|jpg|jpeg|bmp|png|svg)`, 'ig')
     this.exclude = ['.vscode', '.git', '.github', 'node_modules', 'build', 'config', 'test', 'types'].concat(exclude)
@@ -165,9 +166,9 @@ Filter.prototype.run = function () {
 
     createDir(this.des)
 
-    if (this.httpRequestUrls.length) {
+    if (this.apiList.length) {
         (async () => {
-            const content = await getResources(this.httpRequestUrls)
+            const content = await getResources(this.apiList)
             const images = match(content, this.imgReg)
             this.handleImage(images)
             this.walk()
