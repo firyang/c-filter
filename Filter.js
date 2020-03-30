@@ -54,7 +54,6 @@ const getResources = async (apiList) => {
     })
     const res = await Promise.all(promises)
     const content = res.map(data => JSON.stringify(data)).join(';')
-    console.log(content)
     return content
 }
 
