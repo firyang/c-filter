@@ -1,6 +1,6 @@
 {
     "name": "c-filter",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "main": "./bin/www",
     "description": "For cleaning web project, Such as unused pictrue.",
     "scripts": {},
