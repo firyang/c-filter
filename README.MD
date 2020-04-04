@@ -1,8 +1,8 @@
 # c-filter
 [![npm version](https://badge.fury.io/js/c-filter.svg)](https://badge.fury.io/js/c-filter) 
 
-js toolkit is used to clean up unused pictures in web projects
-Support request service data to filter
+js toolkit is used to clean up unused pictures in web projects   
+Support request service data to filter   
 It will not change the original resource, only find the referenced resource and copy it to the [imagePath]_copy directory.
 
 ## Install
@@ -21,7 +21,7 @@ During global installation, you can directly execute the "cft" command in the pr
 cft
 ```
 When installing in the project, you need to configure scripts and use "npm run cft" to run the program
-```json
+```
 {
   scripts:{
     "cft":"cft"
@@ -46,7 +46,7 @@ module.exports = {
   path: "src/images"
 }
 ```
-Ignore folders that do not need to be checked
+Ignore folders that do not need to be checked   
 Default Ignore: '.vscode', '.git', '.github', 'node_modules', 'build', 'config', 'test', 'types'
 
 ```javascript
@@ -55,7 +55,7 @@ module.exports = {
   exclude: ["data"]
 }
 ```
-If the picture is rendered by requesting service data, you can configure the api to request service data for filtering
+If the picture is rendered by requesting service data, you can configure the api to request service data for filtering   
 for request parameters in apiList, please refer to axios
 
 ```javascript
